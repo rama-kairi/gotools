@@ -1,0 +1,6 @@
+#!/bin/sh
+# Create dist folder if not exists
+mkdir -p dist
+
+# build the go binary
+ENV_GOOS=linux go build -o dist/main

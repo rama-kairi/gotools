@@ -1,0 +1,6 @@
+#!/bin/sh
+# Commit Success Message
+echo "✅ -> Commit Succeeded...\n"
+
+# Put Your Communication Code here
+
