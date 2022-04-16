@@ -32,8 +32,11 @@ func GenerateGitIgnore(lang LangType) {
 	// Write to file
 	switch lang {
 	case GoLang:
-		file.WriteString("# .gitignore\n")
-		file.WriteString("# Created by gotools\n")
+		_, err := file.WriteString(`# .gitignore\n
+		# Created by gotools\n`)
+		if err != nil {
+			panic(err)
+		}
 
 		defer file.Close()
 

@@ -25,7 +25,10 @@ var ghCmd = &cobra.Command{
 		if len(args) > 1 {
 			fmt.Println("Too many arguments. You can only specify one of ['pre-commit', 'pre-push', 'auto-setup'] these flags.")
 		} else if len(args) == 0 {
-			cmd.Help()
+			err := cmd.Help()
+			if err != nil {
+				fmt.Println(err)
+			}
 		} else {
 			arg := strings.ToLower(args[0])
 

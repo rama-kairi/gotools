@@ -20,7 +20,9 @@ var giCmd = &cobra.Command{
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
-			cmd.Help()
+			if err := cmd.Help(); err != nil {
+				fmt.Println(err)
+			}
 		} else {
 			if args[0] == "go" {
 				fmt.Println("Generating .gitignore file for golang projects")
