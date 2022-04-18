@@ -8,6 +8,10 @@ golangci-lint run --tests=0 ./...
 # Running golangci-lint
 printf "Running go mod tidy\n"
 go mod tidy
+
+// Running git add -A
+printf "Running git add -A\n"
+git add -A
 `
 
 const prepareCommitMsgHook = `#!/bin/sh
