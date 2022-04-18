@@ -46,7 +46,7 @@ func InitGoMod() {
 
 func TidyGoMod() {
 	// check if go.mod file exist
-	if _, err := os.Stat("go.mod"); os.IsNotExist(err) {
+	if _, err := os.Stat("go.mod"); !os.IsNotExist(err) {
 		fmt.Println("Running go mod tidy")
 		out, err := exec.Command("go", "mod", "tidy").Output()
 		if err != nil {
