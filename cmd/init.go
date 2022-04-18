@@ -27,16 +27,17 @@ var initCmd = &cobra.Command{
 			fmt.Println("'init' command does not accept any arguments")
 			os.Exit(1)
 		} else {
-			fmt.Println("Initializing the project")
-			fmt.Println("Creating .gotools directory in the current directory if not exist")
+			fmt.Println("➡️ Initializing the project")
+			fmt.Println("➡️ Creating .gotools directory in the current directory if not exist")
 			utilities.CreateFolder(".gotools")
-			fmt.Println("Initializing the Git repository with main branch, .gitignore file and README.md file if not exist.")
+			fmt.Println("➡️ Initializing the Git repository with main branch, .gitignore file and README.md file if not exist.")
 			utilities.CheckGitStatus()
 			utilities.CreateReadme()
-			fmt.Println("Initialized the go mod file if not exist.")
+			fmt.Println("➡️ Initialized the go mod file if not exist.")
 			utilities.InitGoMod()
-			fmt.Println("Running go mod tidy if go.mod file is exist.")
+			fmt.Println("➡️ Running go mod tidy if go.mod file is exist.")
 			utilities.TidyGoMod()
+			fmt.Println("✅ Project initialized successfully")
 		}
 	},
 }

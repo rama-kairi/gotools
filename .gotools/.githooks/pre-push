@@ -1,6 +1,8 @@
 #!/bin/sh
-# Create dist folder if not exists
-mkdir -p dist
+# Pushing to main branch not allowed
+if [ "$1" = "main" ]; then
+  printf "❌ Pushing to main branch not allowed\n"
+  exit 1
+fi
 
-# build the go binary
-ENV_GOOS=linux go build -o dist/main
+exit 0

@@ -1,32 +1,13 @@
 package gh
 
 const preCommitHook = `#!/bin/sh
+# Running golangci-lint
+printf "Running golangci-lint\n"
+golangci-lint run --tests=0 ./...
 
-# Creating a variable of all the files that have been changed
-STAGED_GO_FILES=$(git diff --cached --name-only | grep ".go$")
-
-# Checking if there are any staged files
-if [[ "$STAGED_GO_FILES" = "" ]]; then
-  exit 0
-fi
-
-PASS=true
-
-# Looping through all the staged files
-for FILE in $STAGED_GO_FILES
-do
-    golangci-lint run --tests=0 ./...
-    if [ $? -ne 0 ]; then
-        PASS=false
-    fi
-done
-
-if ! $PASS; then
-  printf "❌ Commit Failed with the above error, Please fix and Retry\n"
-  exit 1
-fi
-
-exit 0
+# Running golangci-lint
+printf "Running go mod tidy\n"
+go mod tidy
 `
 
 const prepareCommitMsgHook = `#!/bin/sh
@@ -53,11 +34,13 @@ exit 0
 `
 
 const prePushHook = `#!/bin/sh
-# Create dist folder if not exists
-mkdir -p dist
+# Pushing to main branch not allowed
+if [ "$1" = "main" ]; then
+  printf "❌ Pushing to main branch not allowed\n"
+  exit 1
+fi
 
-# build the go binary
-ENV_GOOS=linux go build -o dist/main
+exit 0
 `
 
 const postCommitHook = `#!/bin/sh

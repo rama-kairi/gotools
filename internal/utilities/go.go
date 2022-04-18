@@ -12,7 +12,7 @@ func InitGoMod() {
 	if _, err := os.Stat("go.mod"); os.IsNotExist(err) {
 		// Check if user would like to use go modules and github to store the project?
 		// If yes, then create go.mod file
-		if ans := scanner("Would you like to use go modules and github to store the project?"); ans == "y" {
+		if ans := scannerWithConfirm("Would you like to use go modules and github to store the project?"); ans == "y" {
 			fmt.Println("Creating go.mod file")
 
 			// Ask github username

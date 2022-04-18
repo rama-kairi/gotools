@@ -8,7 +8,7 @@ import (
 	"os/exec"
 )
 
-func scanner(question string) string {
+func scannerWithConfirm(question string) string {
 	fmt.Println(question, "(y/n)")
 	answer := ""
 	_, err := fmt.Scan(&answer)
@@ -20,7 +20,18 @@ func scanner(question string) string {
 	if answer != "y" && answer != "n" {
 		fmt.Println("Error: must specify one of ['y', 'n']")
 		fmt.Println("Info: Or just press 'ctrl+c' to exit.")
-		scanner(question)
+		scannerWithConfirm(question)
+	}
+
+	return answer
+}
+
+func scanner(question string) string {
+	fmt.Println(question)
+	answer := ""
+	_, err := fmt.Scan(&answer)
+	if err != nil {
+		fmt.Println(err)
 	}
 
 	return answer
